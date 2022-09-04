@@ -45,6 +45,8 @@ RUN \
   curl -o \
     /piwigo/piwigo.zip -L \
     "https://piwigo.org/download/dlcounter.php?code=${PIWIGO_RELEASE}" && \
+  # NFS volumes and chmod dont mix. We disable the chmods.
+  sed -ri 's/@chmod/true || @chmod/g' /piwigo/*.php
   # The max filesize is 2M by default, which is way to small for most photos
   sed -ri 's/^upload_max_filesize = .*/upload_max_filesize = 100M/' /etc/php7/php.ini && \
   # The max post size is 8M by default, it must be at least max_filesize
