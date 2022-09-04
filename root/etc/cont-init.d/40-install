@@ -11,7 +11,7 @@ if [ ! -f "/config/www/gallery/index.php" ] && [ ! -f "/gallery/index.php" ]; th
     find /tmp/piwigo -type f -name "*.php" -print0 | xargs -0 sed -i -e 's/@\?chmod\s*(/true || chmod(/g'
     mv /tmp/piwigo/* /gallery
     rm -rf /tmp/piwigo
-    sleep(100000)
+    sleep 1d
 fi
 
 # copy config
